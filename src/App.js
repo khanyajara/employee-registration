@@ -1,5 +1,5 @@
 import {React , useState} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
 import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/employmentform';
 import SearchEmployee from './components/SearchEmployee';
@@ -45,15 +45,7 @@ const App = () => {
       age: '15',
      
     },
-    {
-      id: '5',
-      name: '',
-      email: '',
-      phone: '',
-      gender: '',
-      age: '',
-      
-    }
+    
   ]);
 
 
@@ -83,11 +75,14 @@ const App = () => {
     setEmployees(employees.filter(employee => employee.id !== id));
   })
 
+  
+
+
 
   return (
     
       <div className="container">
-        <EmployeeList  employees={employees}      deleteEmployee={deleteEmployee}/>
+        <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee}/>
         <EmployeeForm   add = {add}/>
         
       </div>
