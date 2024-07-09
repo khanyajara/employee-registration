@@ -21,6 +21,7 @@ const EmployeeDetails =()=> {
           <p>Email:{employee.email}</p>
           <p>Phone:{employee.phone}</p>
           <p>Age:{employee.age}</p>
+          <p>email</p>
 
           <Link to ={'/employee/edit/$ {employee.id}'}>Edit</Link>
 
