@@ -23,7 +23,7 @@ const EmployeeForm = (props) => {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div><h2>Employee Registry</h2>
             <label>Name:</label>
             <input type="text" name="name"    onChange={(event)=>setName(event.target.value)}/>
           </div>

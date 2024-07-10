@@ -4,11 +4,14 @@ import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/employmentform';
 import SearchEmployee from './components/SearchEmployee';
 import EmployeeList from './components/EmployList';
+import { useParams } from 'react-router-dom';
+import '../src/App.css';
 
 
 const App = () => {
-
-  const [employees, setEmployees] = useState([
+  const { id } = useParams();
+  const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
+   const [employees, setEmployees] = useState([
     {
       id: '1',
       name: 'John Doe',
@@ -89,17 +92,42 @@ const handleupdate = (updatedEmployees) =>{
 
   setFilteredEmployees (updatedEmployees)
 }
+
+const handleUpdate = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch(`/api/employees/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formState),
+    });
+    const data = await response.json();
+    setEmployee(data);
+  } catch (error) {
+    console.error('Error updating employee:', error);
+  }
+};
  
 
 
   return (
- <div>
+ <div className='container'>
    <h1>Employee Registration form</h1>
      <div className="container">
-     <SearchEmployee handleSearch={handleSearch} />
-       <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee}  />
-       <EmployeeForm   add = {add}/>
-       <EmployeeDetails />
+     <div className='Search'>
+       <SearchEmployee handleSearch={handleSearch} />
+     </div>
+       <div className='list'>
+         <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
+       </div>
+       <div className='form'>
+         <EmployeeForm   add = {add}/>
+       </div>
+       <div className='details '>
+         <EmployeeDetails />
+       </div>
       
    
    

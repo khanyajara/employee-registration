@@ -1,0 +1,45 @@
+.container {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     height: 500px;
+     align-items: center;
+     margin-top: 90px;
+     }
+
+
+     .Search{
+
+        margin-top: 50px;
+        border-color: aqua;
+        border-radius: 25px;
+        background-color: rgb(238, 238, 234); 
+     }
+
+     .list{
+
+        margin: 16px;
+        background-color: rgb(238, 238, 234);
+        border-radius:25px ;
+        width: 700px;
+     }
+
+     .list2{
+
+        padding-left: 35px;
+
+     }
+     
+     .head{
+            padding-left: 225px;
+
+        }
+
+        .form{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(238, 238, 234);
+            border-radius:25px ;
+            width: 700px;
+            padding-left: 80px;
+        }

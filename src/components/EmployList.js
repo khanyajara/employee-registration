@@ -50,8 +50,8 @@ const EmployeeList = ( props) => {
 
    
   return (
-    <div>
-      <h2>Employee List</h2>
+    <div className='list2'  >
+      <h2 className='head'>Employee List</h2>
       <table>
         <thead>
           <tr>

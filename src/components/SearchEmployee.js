@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchEmployee = () => {
+const SearchEmployee = (props) => {
   const [searchId, setSearchId] = useState('');
   const [employee, setEmployee] = useState(null);
 
@@ -21,7 +21,7 @@ const SearchEmployee = () => {
         type="text"
         placeholder="Enter Employee ID"
         value={searchId}
-        onChange={(e) => setSearchId(e.target.value)}
+        onChange={(e)=> setSearchId(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
       {employee && (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const EmployeeDetails = () => {
+const EmployeeDetails = (props) => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
   const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
