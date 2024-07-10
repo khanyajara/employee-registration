@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const EmployeeDetails = (props) => {
+const EmployeeDetails = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
   const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
@@ -80,7 +80,7 @@ const EmployeeDetails = (props) => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onClick={handleUpdate}>Update</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );

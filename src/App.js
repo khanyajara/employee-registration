@@ -1,10 +1,10 @@
 import {React , useState} from 'react';
 import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
-import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/employmentform';
 import SearchEmployee from './components/SearchEmployee';
 import EmployeeList from './components/EmployList';
 import { useParams } from 'react-router-dom';
+import Form from './components/form';
 import '../src/App.css';
 
 
@@ -79,7 +79,11 @@ const App = () => {
   const handleSearch = () => {
     // Fetch employee by ID
   };
-
+  const updateEmployee = (updatedEmployee) => {
+    setEmployees(employees.map(employee =>
+      employee.id === updatedEmployee.id ? updatedEmployee : employee
+    ));
+  };
 
   const  deleteEmployee  =  ((id)=>{
     setEmployees(employees.filter(employee => employee.id !== id));
@@ -117,16 +121,16 @@ const handleUpdate = async (e) => {
    <h1>Employee Registration form</h1>
      <div className="container">
      <div className='Search'>
-       <SearchEmployee handleSearch={handleSearch} />
+       
      </div>
        <div className='list'>
-         <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
+        
        </div>
        <div className='form'>
          <EmployeeForm   add = {add}/>
        </div>
        <div className='details '>
-         <EmployeeDetails />
+         <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate} />
        </div>
       
    
