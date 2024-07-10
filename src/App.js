@@ -4,7 +4,7 @@ import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/employmentform';
 import SearchEmployee from './components/SearchEmployee';
 import EmployeeList from './components/EmployList';
-import './App.css'
+
 
 const App = () => {
 
@@ -69,23 +69,42 @@ const App = () => {
     console.log(newEmploye)
     console.log(employees);
   })
+  
+  const [searchId, setSearchId] = useState('');
+  const [employee, setEmployee] = useState(null);
+
+  const handleSearch = () => {
+    // Fetch employee by ID
+  };
 
 
   const  deleteEmployee  =  ((id)=>{
     setEmployees(employees.filter(employee => employee.id !== id));
   })
 
-  
+ const [filteredEmployees,setFilteredEmployees] = useState(employees);
 
+
+const handleupdate = (updatedEmployees) =>{
+
+  setFilteredEmployees (updatedEmployees)
+}
+ 
 
 
   return (
-    
-      <div className="container">
-        <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee}/>
-        <EmployeeForm   add = {add}/>
-        
-      </div>
+ <div>
+   <h1>Employee Registration form</h1>
+     <div className="container">
+     <SearchEmployee handleSearch={handleSearch} />
+       <EmployeeList  employees={employees}  deleteEmployee={deleteEmployee}  />
+       <EmployeeForm   add = {add}/>
+       <EmployeeDetails />
+      
+   
+   
+     </div>
+ </div>
     
   );
 }

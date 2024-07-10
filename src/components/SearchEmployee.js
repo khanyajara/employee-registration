@@ -1,73 +1,38 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
 
 const SearchEmployee = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [employees, setEmployees] = useState([
-    {
-      id: '1',
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      gender: 'Male',
-      age: '30',
-      
-    },
-    
-  ]);
+  const [searchId, setSearchId] = useState('');
+  const [employee, setEmployee] = useState(null);
 
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/api/employees/${searchId}`);
+      const data = await response.json();
+      setEmployee(data);
+    } catch (error) {
+      console.error('Error fetching employee:', error);
+    }
   };
-
-  const handleDelete = (id)=>{
-
-  };
-
-  const filteredEmployees = employees.filter(employee =>
-    employee.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div>
-      <h1>Search Employees</h1>
+      <h1>Search Employee</h1>
       <input
         type="text"
-        placeholder="Search by name..."
-        value={searchTerm}
-        onChange={handleSearch}
+        placeholder="Enter Employee ID"
+        value={searchId}
+        onChange={(e) => setSearchId(e.target.value)}
       />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredEmployees.map(employee => (
-            <tr key={employee.id}>
-              <td><Link to={`/employees/${employee.id}`}>{employee.name}</Link></td>
-              <td>{employee.email}</td>
-              <td>{employee.phone}</td>
-              <td>{employee.gender}</td>
-              <td>{employee.age}</td>
-              
-              <td>
-                <Link to={`/employees/edit/${employee.id}`}><button>Update</button></Link>
-                <button onClick={() => handleDelete(employee.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <button onClick={handleSearch}>Search</button>
+      {employee && (
+        <div>
+          <h2>{employee.name}</h2>
+          <p>Email: {employee.email}</p>
+          <p>Phone: {employee.phone}</p>
+        </div>
+      )}
     </div>
   );
 };
 
-export default SearchEmployee;
+export default SearchEmployee; 

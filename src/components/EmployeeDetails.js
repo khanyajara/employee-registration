@@ -1,37 +1,89 @@
-import { useEffect , useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-const EmployeeDetails =()=> {
-   
-    const {id} = useParams ();
-    const [employee,setEmployee] =
-    useState(null);
+const EmployeeDetails = () => {
+  const { id } = useParams();
+  const [employee, setEmployee] = useState(null);
+  const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
 
-    useEffect (()=>{
-        //fetch employee details by ID
-    })
+  useEffect(() => {
+    const fetchEmployee = async () => {
+      try {
+        const response = await fetch(`/api/employees/${id}`);
+        const data = await response.json();
+        setEmployee(data);
+        setFormState({ name: data.name, email: data.email, phone: data.phone });
+      } catch (error) {
+        console.error('Error fetching employee:', error);
+      }
+    };
 
-    if (!employee)return<div>loading...</div>
+    fetchEmployee();
+  }, [id]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
 
-    return (
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/employees/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+      const data = await response.json();
+      setEmployee(data);
+    } catch (error) {
+      console.error('Error updating employee:', error);
+    }
+  };
 
+  if (!employee) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>{employee.name}</h1>
+      <p>Email: {employee.email}</p>
+      <p>Phone: {employee.phone}</p>
+
+      <h2>Update Employee Details</h2>
+      <form onSubmit={handleUpdate}>
         <div>
-          <h2>{employee.name}</h2>
-          <p>Email:{employee.email}</p>
-          <p>Phone:{employee.phone}</p>
-          <p>Age:{employee.age}</p>
-          <p>email:{employee.email}</p>
-
-          <Link to ={'/employee/edit/$ {employee.id}'}>Edit</Link>
-
+          <label>Name: </label>
+          <input
+            type="text"
+            name="name"
+            value={formState.name}
+            onChange={handleChange}
+          />
         </div>
-    );
-    
-
-
-
+        <div>
+          <label>Email: </label>
+          <input
+            type="email"
+            name="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Phone: </label>
+          <input
+            type="text"
+            name="phone"
+            value={formState.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" onClick={handleUpdate}>Update</button>
+      </form>
+    </div>
+  );
 };
-
 
 export default EmployeeDetails;
