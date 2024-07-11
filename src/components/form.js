@@ -126,25 +126,35 @@ function Form() {
           .filter(employee => employee.id.includes(searchQuery))
           .map(employee => (
           
-                <div key={employee.id}>
+                <div key={employee.id} className='tablecontent' >
                   <table className='table'>
                       <th>
-                          <p>Name: {employee.name}</p>
+                          <tr>
+                            <p>Name: {employee.name}</p>
+                          </tr>
                       </th>
                       <th>
-                          <p>Email: {employee.email}</p>
+                          <tr>
+                            <p>Email: {employee.email}</p>
+                          </tr>
                       </th>
                       <th>
-                          <p>Gender: {employee.gender}</p>
+                          <tr>
+                            <p>Gender: {employee.gender}</p>
+                          </tr>
                       </th>
                       <th>
-                          <p>Phone: {employee.phone}</p>
+                          <tr>
+                            <p>Phone: {employee.phone}</p>
+                          </tr>
                       </th>
                       <th>
-                          <p>ID: {employee.id}</p>
+                          <tr>
+                            <p>ID: {employee.id}</p>
+                          </tr>
                       </th>
-                      <th><button onClick={() => deleteEmployee(employee.id)}>Delete</button></th>
-                      <th><button onClick={() => editEmployee(employee)}>Edit</button></th>
+                      <th><tr><button onClick={() => deleteEmployee(employee.id)}>Delete</button></tr></th>
+                      <th><tr><button onClick={() => editEmployee(employee)}>Edit</button></tr></th>
                   </table></div>
            
           ))}
