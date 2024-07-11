@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 function Form() {
   const [employees, setEmployees] = useState([]);
+  const [errors,setErrors] =useState ();
+  const [showError,setShowError] = useState ()
   const [searchQuery, setSearchQuery] = useState('');
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -14,15 +16,62 @@ function Form() {
   const [isEditing, setIsEditing] = useState(false);
   const [currentEmployeeId, setCurrentEmployeeId] = useState('');
 
+  const ContactForm = () => {
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      cellnumber: ""
+    });
+  
+    const [error, setError] = useState("");
+  
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+      });
+    };
+  
+    const validateForm = () => {
+      const { name, email, cellnumber } = formData;
+  
+      if (!name || !email || !cellnumber) {
+        setError("Please fill out all required fields");
+        return false;
+      }
+  
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        setError("Please enter a valid email address");
+        return false;
+      }
+  
+      const phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(cellnumber)) {
+        setError("Please enter a valid cell number (10 digits)");
+        return false;
+      }
+  
+      setError("");
+      return true;
+    };
+  }  
+
+  
   const addEmployee = () => {
     if (employees.some(employee => employee.id === newEmployee.id)) {
       alert('Duplicate detected.');
       return;
     }
-    if (!newEmployee.name || !newEmployee.email || !newEmployee.id) {
+    if (!newEmployee.name || !newEmployee.email || !newEmployee.id || !newEmployee.gender) {
       alert('Fill in all required fields.');
       return;
     }
+    if (employees.some(employee => employee.email === newEmployee.email)) {
+      alert('Duplicate detected.');
+      return;
+    }
+    
     setEmployees([...employees, newEmployee]);
     resetForm();
   };
@@ -89,7 +138,7 @@ function Form() {
         <input
           type="email"
           placeholder="Email"
-          value={newEmployee.email}
+          value={newEmployee.email} 
           onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
         />
         <input
