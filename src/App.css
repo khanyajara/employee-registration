@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 .container {
      display: flex;
      justify-content: center;
@@ -19,7 +26,7 @@
      align-items: center;
      margin-top: 90px;   
      border-color: blue;
-     background-color: rgb(135, 205, 222);
+     background-color: rgb(29, 184, 223);
      margin: 80px;
      border-radius: 25px;
      width: 100%;

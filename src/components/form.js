@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 function Form() {
   const [employees, setEmployees] = useState([]);
-  const [errors,setErrors] =useState ();
-  const [showError,setShowError] = useState ()
+  const [errors, setErrors] = useState("");
+  const [showError, setShowError] = useState("")
   const [searchQuery, setSearchQuery] = useState('');
   const [newEmployee, setNewEmployee] = useState({
     name: '',
@@ -13,65 +13,59 @@ function Form() {
     position: '',
     id: ''
   });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
   const [isEditing, setIsEditing] = useState(false);
   const [currentEmployeeId, setCurrentEmployeeId] = useState('');
 
-  const ContactForm = () => {
-    const [formData, setFormData] = useState({
-      name: "",
-      email: "",
-      cellnumber: ""
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
-  
-    const [error, setError] = useState("");
-  
-    const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-      });
-    };
-  
-    const validateForm = () => {
-      const { name, email, cellnumber } = formData;
-  
-      if (!name || !email || !cellnumber) {
-        setError("Please fill out all required fields");
-        return false;
-      }
-  
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        setError("Please enter a valid email address");
-        return false;
-      }
-  
-      const phonePattern = /^\d{10}$/;
-      if (!phonePattern.test(cellnumber)) {
-        setError("Please enter a valid cell number (10 digits)");
-        return false;
-      }
-  
-      setError("");
-      return true;
-    };
-  }  
+  };
 
-  
+  const validateForm = () => {
+    const { name, email, phone } = newEmployee;
+
+    if (!name || !email || !phone) {
+      setErrors("All fields are required.");
+      return false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setErrors("Please enter a valid email address.");
+      return false;
+    }
+
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(phone)) {
+      setErrors("Please enter a valid phone number (10 digits).");
+      return false;
+    }
+ if (!name || !email || !phone) {
+      alert("employee-registered");
+      return false;
+    }
+    setErrors("");
+    return true;
+  };
+
   const addEmployee = () => {
     if (employees.some(employee => employee.id === newEmployee.id)) {
       alert('Duplicate detected.');
-      return;
-    }
-    if (!newEmployee.name || !newEmployee.email || !newEmployee.id || !newEmployee.gender) {
-      alert('Fill in all required fields.');
       return;
     }
     if (employees.some(employee => employee.email === newEmployee.email)) {
       alert('Duplicate detected.');
       return;
     }
-    
+   
+
     setEmployees([...employees, newEmployee]);
     resetForm();
   };
@@ -104,18 +98,19 @@ function Form() {
     resetForm();
   };
 
-  const handleSubmit = () => {
-    if (isEditing) {
-      updateEmployee();
-    } else {
-      addEmployee();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      if (isEditing) {
+        updateEmployee();
+      } else {
+        addEmployee();
+      }
     }
   };
 
   return (
     <div className="App">
-      
-      
       <div>
         <h2>Employee Query</h2>
         <input
@@ -124,10 +119,8 @@ function Form() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        
       </div>
-      
-      <div className='add' >
+      <div className='add'>
         <h2>{isEditing ? 'Edit Employee' : 'Add Employee'}</h2>
         <input
           type="text"
@@ -138,7 +131,7 @@ function Form() {
         <input
           type="email"
           placeholder="Email"
-          value={newEmployee.email} 
+          value={newEmployee.email}
           onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
         />
         <input
@@ -165,47 +158,45 @@ function Form() {
           value={newEmployee.id}
           onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
         />
+
+        {errors && <p style={{ color: 'red' }}>{errors}</p>}
+
+        <div></div>
         <button onClick={handleSubmit}>{isEditing ? 'Update Employee' : 'Add Employee'}</button>
         {isEditing && <button onClick={resetForm}>Cancel</button>}
       </div>
-      
       <div className='list'>
-        <h2 >Employee List</h2>
+        <h2>Employee List</h2>
         {employees
           .filter(employee => employee.id.includes(searchQuery))
           .map(employee => (
-          
-                <div key={employee.id} className='tablecontent' >
-                  <table className='table'>
-                      <th>
-                          <tr>
-                            <p>Name: {employee.name}</p>
-                          </tr>
-                      </th>
-                      <th>
-                          <tr>
-                            <p>Email: {employee.email}</p>
-                          </tr>
-                      </th>
-                      <th>
-                          <tr>
-                            <p>Gender: {employee.gender}</p>
-                          </tr>
-                      </th>
-                      <th>
-                          <tr>
-                            <p>Phone: {employee.phone}</p>
-                          </tr>
-                      </th>
-                      <th>
-                          <tr>
-                            <p>ID: {employee.id}</p>
-                          </tr>
-                      </th>
-                      <th><tr><button onClick={() => deleteEmployee(employee.id)}>Delete</button></tr></th>
-                      <th><tr><button onClick={() => editEmployee(employee)}>Edit</button></tr></th>
-                  </table></div>
-           
+            <div key={employee.id} className='tablecontent'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>ID</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{employee.name}</td>
+                    <td>{employee.email}</td>
+                    <td>{employee.gender}</td>
+                    <td>{employee.phone}</td>
+                    <td>{employee.id}</td>
+                    <td>
+                      <button onClick={() => deleteEmployee(employee.id)}>Delete</button>
+                      <button onClick={() => editEmployee(employee)}>Edit</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           ))}
       </div>
     </div>

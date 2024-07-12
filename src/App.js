@@ -113,7 +113,6 @@ const handleUpdate = async (e) => {
     console.error('Error updating employee:', error);
   }
 };
- 
 
 
   return (
@@ -130,7 +129,7 @@ const handleUpdate = async (e) => {
          <EmployeeForm   add = {add}/>
        </div>
        <div className='details '>
-         <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate} />
+         <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
        </div>
       
    
