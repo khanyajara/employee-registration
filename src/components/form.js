@@ -47,10 +47,7 @@ function Form() {
       setErrors("Please enter a valid phone number (10 digits).");
       return false;
     }
- if (!name || !email || !phone) {
-      alert("employee-registered");
-      return false;
-    }
+ 
     setErrors("");
     return true;
   };
@@ -62,6 +59,11 @@ function Form() {
     }
     if (employees.some(employee => employee.email === newEmployee.email)) {
       alert('Duplicate detected.');
+      return;
+    }
+    if(!validateForm()) return;
+    if(employees.some(employee=>employee.id===newEmployee.id)){
+      alert('Congrats you might be a clone.');
       return;
     }
    
