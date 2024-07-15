@@ -1,8 +1,9 @@
 import {React , useState} from 'react';
-import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,Link, useNavigate } from 'react-router-dom';
 import EmployeeForm from './components/employmentform';
 import SearchEmployee from './components/SearchEmployee';
 import EmployeeList from './components/EmployList';
+import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Form from './components/form';
 import '../src/App.css';
@@ -10,6 +11,7 @@ import '../src/App.css';
 
 const App = () => {
   const { id } = useParams();
+  const navigate = useNavigate 
   const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
    const [employees, setEmployees] = useState([
     {
@@ -50,6 +52,12 @@ const App = () => {
     },
     
   ]);
+
+  
+  const handleTabChange = (tab) => {
+    navigate(`/${tab}`); // Navigate to the specified tab
+  };
+
 
 
 
@@ -116,26 +124,26 @@ const handleUpdate = async (e) => {
 
 
   return (
- <div className='container'>
-   <h1>Employee Registration form</h1>
-     <div className="container">
-     <div className='Search'>
-       
-     </div>
-       <div className='list'>
+ 
+   <div className='container'>
+     <h1>Employee Registration form</h1>
+       <div className="container">
+   
+         <div className='form'>
+          
+         </div>
+         <div className='details '>
+           <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
+         </div>
+         
+
+       </div>
+
+       <div>
         
        </div>
-       <div className='form'>
-         <EmployeeForm   add = {add}/>
-       </div>
-       <div className='details '>
-         <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
-       </div>
-      
-   
-   
-     </div>
- </div>
+   </div>
+ 
     
   );
 }

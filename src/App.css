@@ -1,5 +1,8 @@
 
-
+* {
+background-color: rgb(233, 223, 223);
+color: black;
+}
 
 
 
@@ -9,27 +12,26 @@
      display: flex;
      justify-content: center;
      flex-direction: column;
-     height: 400px;
+     height: 350px;
      align-items: center;
      margin-top: 90px;
+     background-color: rgb(233, 223, 223);
      }
-
-
-
 
 .App{
  
     display: flex;
      justify-content: center;
      flex-direction: column;
-     height: 500px;
+     height: 30px;
      align-items: center;
      margin-top: 90px;   
      border-color: blue;
-     background-color: rgb(29, 184, 223);
+     border-width: 2px;
      margin: 80px;
      border-radius: 25px;
-     width: 100%;
+     width: 200px;
+     background-color: rgb(233, 223, 223);
      
 }
 
@@ -44,6 +46,9 @@
      margin-top: 90px; 
      width: 400px;
      justify-content: space-around;
+     color: black;
+     transition: 0.5s ease-in-out;
+     outline: none;
     
      
 }  
@@ -56,21 +61,31 @@
      height: 50px;
      align-items: center;
      margin-top: 90px; 
-     width: 400px;
+     width: 800px;
      justify-content: space-around ;
-     background-color: rgb(44, 56, 226);
+     background-color:rgb(233, 223, 223);
      border-radius: 25px;
 }
+.table{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 50px;
+    align-items: center;
+    
+    width: 800px;
+    justify-content: space-around;
 
+}
 
 .table th{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 400px;
-    text-align: left;
+    width: 800px;
+    text-align: left,16 px ;
     justify-content: space-between;
-    background-color: rgb(250, 241, 241);
-    justify-content: space-evenly;
+    background-color: rgb(35, 228, 163);
+   display: flex;
 
 
 }
@@ -80,31 +95,133 @@
     box-sizing: content-box;
     background-color: aqua;
     justify-content: space-evenly;
+    justify-content: space-between;
+    width: fit-content;
 }
 
 .table tr{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 400px;
+    width: 800px;
     text-align: left;
+    padding: 10px;
     justify-content: space-between;
-    background-color: rgb(241, 241, 234);
-    justify-content: space-evenly;
+    
+   display: flex;
+    
 }
 
 .table tr:hover{
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 400px;
+    width: 800px;
     text-align: left;
-    justify-content: space-between;
-    background-color: cadetblue;
-    justify-content: space-evenly;
+  
+    
+    
 }
 
 
+.delete{
+    background-color: crimson;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: none;
+    
+
+}
+
+.delete:hover{
+    background-color: rgb(211, 71, 99);
+    box-shadow: rgba(44, 43, 43, 0.664) 5px 5px,
+    rgba(45, 45, 45, 0.3) 10px 10px,
+     rgba(60, 59, 59, 0.2) 15px 15px,
+      rgba(54, 53, 53, 0.1) 20px 20px,
+       rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.edit{
+    background-color: greenyellow;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: none;
+}
+
+.edit:hover{
+    background-color: rgb(40, 179, 12);
+    box-shadow: rgba(44, 43, 43, 0.664) 5px 5px,
+     rgba(45, 45, 45, 0.3) 10px 10px,
+      rgba(60, 59, 59, 0.2) 15px 15px,
+       rgba(54, 53, 53, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.detail:hover {
+    background-color:rgb(143, 218, 24);
+    color:black;
+  }
 
 
+  .form{
 
+    justify-content: space-between;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    transition: 0.5s ease-in-out;
+    outline: none;
+    }
+    .form:hover{
+        transition: 0.2s ease-in-out;
+        box-shadow: rgba(44, 43, 43, 0.664) 5px 5px,
+     rgba(45, 45, 45, 0.3) 10px 10px,
+      rgba(60, 59, 59, 0.2) 15px 15px,
+       rgba(54, 53, 53, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+    }
 
+  .showL{
+    justify-content: space-between;
+    justify-content: space-evenly;
+    background-color: rgb(212, 160, 186);
 
+    
+  }
+  .showL :hover{
+    background-color:rgb(218, 24, 115);
+    box-shadow: rgba(44, 43, 43, 0.664) 5px 5px,
+    rgba(45, 45, 45, 0.3) 10px 10px,
+     rgba(60, 59, 59, 0.2) 15px 15px,
+      rgba(54, 53, 53, 0.1) 20px 20px,
+       rgba(240, 46, 170, 0.05) 25px 25px;
+  }
+
+  button {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  button::before {
+    margin-left: auto;
+  }
+  
+  button::after, button::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    transition: 0.5s;
+  }
+  
+  button:hover::after, button:hover::before {
+    width: 100%;
+  }
+
+  
