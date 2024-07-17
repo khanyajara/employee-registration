@@ -7,6 +7,7 @@ function Form() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showlist,setShowList] =useState ('') 
   const [showForm,setShowForm] =useState ('')
+  const [filteredEmployees,setFilteredEmployees] =useState ('')
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     gender: '',
@@ -31,9 +32,9 @@ function Form() {
   };
 
   const validateForm = () => {
-    const { name, email, phone } = newEmployee;
+    const { name, email, phone, id } = newEmployee;
 
-    if (!name || !email || !phone) {
+    if (!name || !email || !phone || !id) {
       setErrors("All fields are required.");
       return false;
     }
@@ -49,7 +50,11 @@ function Form() {
       setErrors("Please enter a valid phone number (10 digits).");
       return false;
     }
- 
+    const idPattern = /^\d{13}$/;
+     if (!idPattern.test(id)) {
+      setErrors("Please enter a valid id (13 digits).");
+    return false;
+    }
     setErrors("");
     return true;
   };
@@ -123,16 +128,31 @@ function Form() {
     setShowForm (true);
     setShowList(false);
   }
+
+  const handleSearch = ()=> {
+    if (employees.length===0) {
+      alert("No employees found")
+      }
+      else {
+        setFilteredEmployees(employees.filter(employee => employee.name.toLowerCase().includes(searchQuery.toLowerCase())))
+    }
+  }
   return (
     <div className="App">
      
 
   
-            <div  className='showL'>
+    <div className='showL'>
   
-                <button  onClick={handleShowForm} >show employee form</button>
-                <button  onClick={handleshowlist} >show employee list</button>
-            </div>
+                <div className='column' >
+  
+                     <button className='btn2' onClick={handleshowlist}>show employee list</button>
+  
+                </div >
+                 <div className='column' >
+                  <button className='btn1' onClick={handleShowForm} >show employee form</button>
+                 </div>
+    </div>
 
 
       {showForm&& (
@@ -159,12 +179,11 @@ function Form() {
             value={newEmployee.phone}
             onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
           />
-          <input
-            type="text"
-            placeholder="Gender"
-            value={newEmployee.gender}
-            onChange={(e) => setNewEmployee({ ...newEmployee, gender: e.target.value })}
-          />
+         <select id="Gender" name="Gender" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
+  <option value="Select Gender">Select Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
           <input
             type="text"
             placeholder="Position"
