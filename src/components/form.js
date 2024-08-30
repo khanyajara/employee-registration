@@ -1,32 +1,38 @@
 import React, { useState } from 'react';
+import './form.css';
 
 function Form() {
   const [employees, setEmployees] = useState([]);
   const [errors, setErrors] = useState("");
-  const [showError, setShowError] = useState("")
   const [searchQuery, setSearchQuery] = useState('');
-  const [showlist,setShowList] =useState ('') 
-  const [showForm,setShowForm] =useState ('')
-  const [filteredEmployees,setFilteredEmployees] =useState ('')
+  const [showList, setShowList] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [isOpen,setIsOpen] = useState(false)
   const [newEmployee, setNewEmployee] = useState({
     name: '',
     gender: '',
     email: '',
     phone: '',
     position: '',
-    id: ''
-  });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: ""
+    id: '',
+    image: ''
   });
   const [isEditing, setIsEditing] = useState(false);
   const [currentEmployeeId, setCurrentEmployeeId] = useState('');
 
+  const handleShowList = () => {
+    setShowList(true);
+    setShowForm(false);
+  };
+
+  const handleShowForm = () => {
+    setShowForm(true);
+    setShowList(false);
+  };
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setNewEmployee({
+      ...newEmployee,
       [e.target.name]: e.target.value
     });
   };
@@ -50,30 +56,27 @@ function Form() {
       setErrors("Please enter a valid phone number (10 digits).");
       return false;
     }
+    
     const idPattern = /^\d{13}$/;
-     if (!idPattern.test(id)) {
-      setErrors("Please enter a valid id (13 digits).");
-    return false;
+    if (!idPattern.test(id)) {
+      setErrors("Please enter a valid ID (13 digits).");
+      return false;
     }
+
     setErrors("");
     return true;
   };
 
   const addEmployee = () => {
     if (employees.some(employee => employee.id === newEmployee.id)) {
-      alert('Duplicate detected.');
+      alert('Duplicate ID detected.');
       return;
     }
     if (employees.some(employee => employee.email === newEmployee.email)) {
-      alert('Duplicate detected.');
+      alert('Duplicate email detected.');
       return;
     }
-    if(!validateForm()) return;
-    if(employees.some(employee=>employee.id===newEmployee.id)){
-      alert('Congrats you might be a clone.');
-      return;
-    }
-   
+    if (!validateForm()) return;
 
     setEmployees([...employees, newEmployee]);
     resetForm();
@@ -86,7 +89,8 @@ function Form() {
       email: '',
       phone: '',
       position: '',
-      id: ''
+      id: '',
+      image: ''
     });
     setIsEditing(false);
     setCurrentEmployeeId('');
@@ -100,11 +104,18 @@ function Form() {
     setNewEmployee(employee);
     setIsEditing(true);
     setCurrentEmployeeId(employee.id);
+    setShowForm(true)
+    setShowList(false)
   };
 
   const updateEmployee = () => {
     setEmployees(employees.map(employee => (employee.id === currentEmployeeId ? newEmployee : employee)));
     resetForm();
+    setShowForm(false)
+    setShowList(true)
+  };
+  const MyDropdown = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleSubmit = (e) => {
@@ -118,143 +129,138 @@ function Form() {
     }
   };
 
-  const handleshowlist = () =>{
-     setShowList(true);
-     setShowForm(false);
-      }
-
-
-  const handleShowForm = () => {
-    setShowForm (true);
-    setShowList(false);
-  }
-
-  const handleSearch = ()=> {
-    if (employees.length===0) {
-      alert("No employees found")
-      }
-      else {
-        setFilteredEmployees(employees.filter(employee => employee.name.toLowerCase().includes(searchQuery.toLowerCase())))
-    }
-  }
   return (
     <div className="App">
-     
-
-  
-    <div className='showL'>
-  
-                <div className='column' >
-  
-                     <button className='btn2' onClick={handleshowlist}>show employee list</button>
-  
-                </div >
-                 <div className='column' >
-                  <button className='btn1' onClick={handleShowForm} >show employee form</button>
-                 </div>
-    </div>
-
-
-      {showForm&& (
-      <div className='add'>
-          
-
-        <h2>{isEditing ? 'Edit Employee' : 'Add Employee'}</h2>
-        <div className='form'>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newEmployee.name}
-            onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={newEmployee.email}
-            onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Phone number"
-            value={newEmployee.phone}
-            onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
-          />
-         <select id="Gender" name="Gender" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
-  <option value="Select Gender">Select Gender</option>
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-</select>
-          <input
-            type="text"
-            placeholder="Position"
-            value={newEmployee.position}
-            onChange={(e) => setNewEmployee({ ...newEmployee, position: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="ID"
-            value={newEmployee.id}
-            onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
-          />
+      <div className='card'>
+        <div className='showL'>
+          <div className='column'>
+            <button
+              className={`btn2 ${showList ? 'active' : ''}`}
+              onClick={handleShowList}
+            >
+              Show Employee List
+            </button>
+          </div>
+          <div className='column'>
+            <button
+              className={`btn1 ${showForm ? 'active' : ''}`}
+              onClick={handleShowForm}
+            >
+              Show Employee Form
+            </button>
+          </div>
         </div>
+      </div>
 
-        {errors && <p style={{ color: 'red' }}>{errors}</p>}
-
-        <div></div>
-        <button  className='edit' onClick={handleSubmit}>{isEditing ? 'Update Employee' : 'Add Employee'}</button>
-        {isEditing && <button className='delete' onClick={resetForm}>Cancel</button>}
-      </div>)} {showlist && (
-      <div>
-        <h2>Employee Query</h2>
-         <div>
-         
-
-         </div>
-
-
-        <input
-          type="text"
-          placeholder="Search by ID"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>)}
-      {showlist&&(
-      <div className='list'>
-        <h2>Employee List</h2>
-        {employees
-          .filter(employee => employee.id.includes(searchQuery))
-          .map(employee => (
-            <div key={employee.id} className='tablecontent'>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Phone</th>
-                    <th>ID</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className='detail' >{employee.name}</td>
-                    <td className='detail'>{employee.email}</td>
-                    <td className='detail'>{employee.gender}</td>
-                    <td className='detail'>{employee.phone}</td>
-                    <td className='detail'>{employee.id}</td>
-                    <td>
-                      <td ><button className='delete' onClick={() => deleteEmployee(employee.id)}>Delete</button></td>
-                      <td ><button  className='edit' onClick={() => editEmployee(employee)}>Edit</button></td>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      {showForm && (
+        <div className='add'>
+          <h2>{isEditing ? 'Edit Employee' : 'Add Employee'}</h2>
+          <div className='card2'>
+            <div className='form'>
+              <input
+                type="text"
+                placeholder="Name"
+                value={newEmployee.name}
+                onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
+                className="input"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={newEmployee.email}
+                onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
+                className="input"
+              />
+              <input
+                type="text"
+                placeholder="Phone number"
+                value={newEmployee.phone}
+                onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
+                className="input"
+              /><br/>
+              <select id="Gender" name="Gender" className="input" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
+                <option value="Select Gender">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <input
+                type="text"
+                placeholder="Position"
+                value={newEmployee.position}
+                onChange={(e) => setNewEmployee({ ...newEmployee, position: e.target.value })}
+                className="input"
+              />
+              <input
+                type="text"
+                placeholder="ID"
+                value={newEmployee.id}
+                onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
+                className="input"
+              />
+              <input
+                type="text"
+                placeholder='Image URL'
+                value={newEmployee.image}
+                onChange={(e) => setNewEmployee({...newEmployee, image: e.target.value})}
+                className="input"
+                required
+              />
             </div>
-          ))}
-      </div>)}
-    </div> 
+          </div>
+
+          {errors && <p style={{ color: 'red' }}>{errors}</p>}
+
+          <button className='edit' onClick={handleSubmit}>
+            {isEditing ? 'Update Employee' : 'Add Employee'}
+          </button>
+          {isEditing && <button className='delete' onClick={resetForm}>Cancel</button>}
+        </div>
+      )}
+
+      {showList && (
+        <div className='list'>
+          <h2>Employee List</h2>
+          <div className='search'>
+            <input
+              type="text"
+              placeholder="Search by Name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div><div className='flexing'>
+            
+            {employees
+              .filter(employee => employee.id.includes(searchQuery))
+              .map(employee => (
+                <div key={employee.id} className='card1'>
+                  <div className='sizeForCard'>
+                    <div className="fakeimg"><img src={employee.image} alt={employee.name}/></div>
+                      <div className="card_content">
+                        <div className="dropdown">
+                        <button className="another-btn" onclick={MyDropdown}>{employee.name}</button>
+            
+                         <ul className="dropdown-menu" >
+                           <div className="Info">
+                             <p>Email: {employee.email}</p>
+                             <p>Gender: {employee.gender}</p>
+                             <p>Phone: {employee.phone}</p>
+                             <p>ID: {employee.id}</p>
+                           </div>
+                         </ul>
+            
+                        </div>
+                          <button className='delete' onClick={() => deleteEmployee(employee.id)}>Delete</button>
+                          <button className='edit' onClick={() => editEmployee(employee)}>Edit</button>
+                        </div>
+            
+                   </div>
+                </div>
+              ))}
+          </div>
+
+        </div>
+      )}
+    </div>
   );
 }
 
