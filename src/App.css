@@ -133,8 +133,8 @@ color: black;
 
 
 .delete{
-    background-color: crimson;
-    border-top-left-radius: 1rem;
+    background-color: rgb(241, 81, 113);
+    border-radius: 1rem;
     border-bottom-right-radius: 1rem;
     border: none;
     
@@ -151,8 +151,8 @@ color: black;
 }
 
 .edit{
-    background-color: rgb(27, 177, 59);
-    border-top-left-radius: 1rem;
+    background-color: rgb(97, 241, 128);
+    border-radius: 1rem;
     border-bottom-right-radius: 1rem;
     border: none;
 }
@@ -340,16 +340,16 @@ color: black;
   }
   
   .edit {
-    background-color: green;
+    background-color: rgb(109, 253, 109);
     color: white;
-    padding: 10px;
+    padding: 8px;
     margin-top: 10px;
   }
   
   .delete {
-    background-color: red;
+    background-color: rgb(243, 95, 95);
     color: white;
-    padding: 10px;
+    padding: 8px;
     margin-top: 10px;
   }
 
