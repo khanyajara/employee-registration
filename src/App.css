@@ -269,8 +269,9 @@ color: black;
   .column {
     float: left;
     width: 100%;
-    padding: 60px;
+    padding: 25px;
     height: 0px;
+    
   }
 
   .column:hover{
@@ -287,7 +288,7 @@ color: black;
     box-shadow: 8px 4px 8px 4px rgba(0, 0,0,0.2);
     transition: 0.3s;
     padding: 16px;
-    width: 600px;
+    width: 500px;
     justify-content: center;
     margin-top: -145px;
     border-radius: 11px;
@@ -301,13 +302,15 @@ color: black;
     width: 200px;
     margin-top: -15px;
     border-color: #aca1a0;
+    margin-left: -45px;
   }
 
   .card2{
-    box-shadow: 8px 4px 8px 4px rgba(3,1,5,0.3);
+    
     transition: 0.3s;
-    width: 800px;
+    width: 750px;
     display: flex;
+    
     flex-direction: row;
     border-radius: 16px;
     justify-content: center;
@@ -335,7 +338,7 @@ color: black;
   
   
   .input {
-    width: 100%;
+    width: 100;
     padding: 8px;
     margin: 5px 0;
     box-sizing: border-box;
@@ -345,7 +348,8 @@ color: black;
     background-color: rgb(109, 253, 109);
     color: white;
     padding: 8px;
-    margin-top: 10px;
+    margin-left:58px;
+    margin-bottom: 10px;
   }
   
   .delete {
@@ -353,9 +357,20 @@ color: black;
     color: white;
     padding: 8px;
     margin-top: 10px;
+    margin-left:15px;
   }
   .searching{
     width: 600px;
+    
+  }
+
+  .adding{
+    height: 400px;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+    0 0  0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0,0,0,0.3);
+    border-radius: 0.33rem;
+    
   }
   
 

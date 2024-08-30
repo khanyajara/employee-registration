@@ -155,72 +155,75 @@ function Form() {
       {showForm && (
         <div className='add'>
           <h2>{isEditing ? 'Edit Employee' : 'Add Employee'}</h2>
-          <div className='card2'>
-            <div className='form'>
-              <div className='columm'>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    value={newEmployee.name}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
-                    className="input"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={newEmployee.email}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
-                    className="input"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Phone number"
-                    value={newEmployee.phone}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
-                    className="input"
-                  /><br/>
-                </div><div>
-                  
-                  <select id="Gender" name="Gender" className="input" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
-                    <option value="Select Gender">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                  <input
-                    type="text"
-                    placeholder="Position"
-                    value={newEmployee.position}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, position: e.target.value })}
-                    className="input"
-                  />
-                  <input
-                    type="text"
-                    placeholder="ID"
-                    value={newEmployee.id}
-                    onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
-                    className="input"
-                  />
-                  <input
-                    type="text"
-                    placeholder='Image URL'
-                    value={newEmployee.image}
-                    onChange={(e) => setNewEmployee({...newEmployee, image: e.target.value})}
-                    className="input"
-                    required
-                  />
+          <div className='adding'>
+            <div className='card2'>
+              <div className='form'>
+                <div className='columm'>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      value={newEmployee.name}
+                      onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
+                      className="input"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={newEmployee.email}
+                      onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
+                      className="input"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Phone number"
+                      value={newEmployee.phone}
+                      onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
+                      className="input"
+                    /><br/>
+                  </div><div>
+            
+                    <select id="Gender" name="Gender" className="input" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
+                      <option value="Select Gender">Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="Position"
+                      value={newEmployee.position}
+                      onChange={(e) => setNewEmployee({ ...newEmployee, position: e.target.value })}
+                      className="input"
+                    />
+                    <input
+                      type="text"
+                      placeholder="ID"
+                      value={newEmployee.id}
+                      onChange={(e) => setNewEmployee({ ...newEmployee, id: e.target.value })}
+                      className="input"
+                    />
+                    <input
+                      type="text"
+                      placeholder='Image URL'
+                      value={newEmployee.image}
+                      onChange={(e) => setNewEmployee({...newEmployee, image: e.target.value})}
+                      className="input"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
+            </div><div>
+              {errors && <p style={{ color: 'red' }}>{errors}</p>}
+            
+              <button className='edit' onClick={handleSubmit}>
+                {isEditing ? 'Update Employee' : 'Add Employee'}
+              </button>
+              {isEditing && <button className='delete' onClick={resetForm}>Cancel</button>}
             </div>
           </div>
 
-          {errors && <p style={{ color: 'red' }}>{errors}</p>}
-
-          <button className='edit' onClick={handleSubmit}>
-            {isEditing ? 'Update Employee' : 'Add Employee'}
-          </button>
-          {isEditing && <button className='delete' onClick={resetForm}>Cancel</button>}
-        </div>
+          </div>
       )}
 
       {showList && (
