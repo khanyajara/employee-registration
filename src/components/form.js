@@ -229,9 +229,10 @@ function Form() {
           <div className='search'>
             <input
               type="text"
-              placeholder="Search by Name"
+              placeholder="Search by ID"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
             />
           </div><div  className='list-container'>
 

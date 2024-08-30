@@ -292,6 +292,8 @@ color: black;
     margin-top: -145px;
     border-radius: 11px;
     display: flex;
+    height: 45px;
+    
   }
 
   .search{
@@ -352,7 +354,9 @@ color: black;
     padding: 8px;
     margin-top: 10px;
   }
-
+  .searching{
+    width: 600px;
+  }
   
 
 

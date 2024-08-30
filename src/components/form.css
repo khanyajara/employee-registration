@@ -58,7 +58,7 @@
      padding: 20px;
      margin-top: 20px;
      margin-left: 25px;
-     display: ;
+    
      
      
     
@@ -92,7 +92,9 @@
   .sizeForCard{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+    0 0  0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0,0,0,0.3);
    
   
   }
@@ -115,18 +117,32 @@
   .card1{
     width: 400px;
     margin-top:45px ;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
   }
   btn1::after{
     background-color: blue;
     color: aliceblue;
   }
-  .flexing {
-    display: flex;
-   
-    column-count: 3;
+  .flexing  {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 100px 300px;
+    grid-gap: 30px;
+    row-gap: 450px;
     
+
     
    
+    padding: 10px;
+  }
+  
+  .flexing  > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 15px;
+    
   }
   .list-container{
     
@@ -136,5 +152,12 @@
     display: flex;
    gap: 2.05rem;
     
+  }
+
+  .search-input{
+    width: 400px;
+    height: 40px;
+    align-content:center;
+    margin-left:-65px;
   }
   

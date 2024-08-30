@@ -15,7 +15,7 @@ const SearchEmployee = (props) => {
   };
 
   return (
-    <div>
+    <div className='searching'>
       <h1>Search Employee</h1>
       <input
         type="text"
