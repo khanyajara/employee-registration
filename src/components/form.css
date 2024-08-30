@@ -119,8 +119,19 @@
     background-color: blue;
     color: aliceblue;
   }
-  .flexing{
+  .flexing {
     display: flex;
     
     
+   
   }
+  .list-container{
+
+  }
+
+  .columm{
+    display: flex;
+   gap: 2.05rem;
+    
+  }
+  
