@@ -23,11 +23,18 @@ function Form() {
   const handleShowList = () => {
     setShowList(true);
     setShowForm(false);
+    if (!showList || showList.length == 0){
+      alert('no employees yet...')
+    }
+   
   };
 
   const handleShowForm = () => {
     setShowForm(true);
     setShowList(false);
+    if (!showList || showList.length === 0){
+      alert('no employees yet...')
+    }
   };
 
   const handleChange = (e) => {
@@ -65,6 +72,7 @@ function Form() {
 
     setErrors("");
     return true;
+    
   };
 
   const addEmployee = () => {
@@ -80,6 +88,8 @@ function Form() {
 
     setEmployees([...employees, newEmployee]);
     resetForm();
+    
+
   };
 
   const resetForm = () => {
@@ -128,6 +138,8 @@ function Form() {
       }
     }
   };
+  
+  
 
   return (
     <div className="App">
@@ -180,14 +192,14 @@ function Form() {
                       value={newEmployee.phone}
                       onChange={(e) => setNewEmployee({ ...newEmployee, phone: e.target.value })}
                       className="input"
-                    /><br/>
-                  </div><div>
-            
+                    />
                     <select id="Gender" name="Gender" className="input" value={newEmployee.gender} onChange={(e) => setNewEmployee({...newEmployee, gender: e.target.value })}>
                       <option value="Select Gender">Select Gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                     </select>
+                  </div><div>
+            
                     <input
                       type="text"
                       placeholder="Position"

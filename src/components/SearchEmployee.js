@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const SearchEmployee = (props) => {
   const [searchId, setSearchId] = useState('');
   const [employee, setEmployee] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   const handleSearch = async () => {
     try {
@@ -12,8 +13,8 @@ const SearchEmployee = (props) => {
     } catch (error) {
       console.error('Error fetching employee:', error);
     }
-  };
-
+  }; 
+   
   return (
     <div className='searching'>
       <h1>Search Employee</h1>

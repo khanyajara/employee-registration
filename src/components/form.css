@@ -3,7 +3,8 @@
     display: grid;
     gap: 2.1rem;
     height: 35px;
-    border-radius:9px ;
+    border-radius:px ;
+    margin-top: 15px;
 }
 
 .active {
@@ -148,6 +149,7 @@
   .columm{
     display: flex;
    gap: 2.05rem;
+   margin-top:15px ;
     
   }
 
