@@ -61,31 +61,13 @@ const App = () => {
 
 
 
-  const add =  ((name, email, phone, gender, age, )=>{
-
-    let newEmploye = {
-      name:name ,
-      email:email,
-      phone:phone,
-      gender:gender,
-      age:age,
-    }
-
-    
-
-    setEmployees((employees)=> 
-      [...employees, newEmploye ]
-    )
-
-    console.log(newEmploye)
-    console.log(employees);
-  })
+ 
   
   const [searchId, setSearchId] = useState('');
   const [employee, setEmployee] = useState(null);
 
   const handleSearch = () => {
-    // Fetch employee by ID
+ 
   };
   const updateEmployee = (updatedEmployee) => {
     setEmployees(employees.map(employee =>
