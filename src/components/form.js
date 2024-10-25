@@ -268,7 +268,7 @@ function Form() {
                     <h3 className='card__title'>{employee.name}</h3>
                     <p className='card__description'>Email: {employee.email}</p>
                     <p className='card__description'>Phone: {employee.phone}</p>
-                    <p className='card__description'>ID no: {employee.id}</p>
+                    <p className='card__description'>ID : {employee.id}</p>
                     <p className='card__description'>Position: {employee.position}</p>
                     <p className='card__description'>Gender: {employee.gender}</p>
                     <button className='button--edit' onClick={() => editEmployee(employee)}>Edit</button>

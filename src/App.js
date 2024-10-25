@@ -11,6 +11,7 @@ const App = () => {
   const [employees, setEmployees] = useState([]); // Assuming you want to manage employees here
 
   const deleteEmployee = (id) => {
+
     setEmployees(employees.filter(employee => employee.id !== id));
   }
 
