@@ -1,150 +1,59 @@
-import {React , useState} from 'react';
-import { BrowserRouter as Router, Route, Routes,Link, useNavigate } from 'react-router-dom';
-import EmployeeForm from './components/employmentform';
-import SearchEmployee from './components/SearchEmployee';
-import EmployeeList from './components/EmployList';
-import { Navigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Auth from './components/auth';
 import Form from './components/form';
 import '../src/App.css';
-
+import Login from './components/login';
+import Signup from './components/Sign-up';
 
 const App = () => {
-  const { id } = useParams();
-  const navigate = useNavigate 
   const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
-   const [employees, setEmployees] = useState([
-    {
-      id: '1',
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890',
-      gender: 'Male',
-      age: '30',
-      
-    },
-    {
-      id: '2',
-      name: 'Jane Smith',
-      email: 'jane.smith@example.com',
-      phone: '123-456-7891',
-      gender: 'Female',
-      age: '28',
-      
-    },
-    {
-      id: '3',
-      name: 'Alice Johnson',
-      email: 'alice.johnson@example.com',
-      phone: '123-456-7892',
-      gender: 'Female',
-      age: '25',
-      
-    },
-    {
-      id: '4',
-      name: 'Bob Brown',
-      email: 'bob.brown@example.com',
-      phone: '123-456-7893',
-      gender: 'Male',
-      age: '15',
-     
-    },
-    
-  ]);
+  const [employees, setEmployees] = useState([]); // Assuming you want to manage employees here
 
-  
-  const handleTabChange = (tab) => {
-    navigate(`/${tab}`); // Navigate to the specified tab
-  };
-
-
-
-
-  const add =  ((name, email, phone, gender, age, )=>{
-
-    let newEmploye = {
-      name:name ,
-      email:email,
-      phone:phone,
-      gender:gender,
-      age:age,
-    }
-
-    
-
-    setEmployees((employees)=> 
-      [...employees, newEmploye ]
-    )
-
-    console.log(newEmploye)
-    console.log(employees);
-  })
-  
-  const [searchId, setSearchId] = useState('');
-  const [employee, setEmployee] = useState(null);
-
-  const handleSearch = () => {
-    // Fetch employee by ID
-  };
-  const updateEmployee = (updatedEmployee) => {
-    setEmployees(employees.map(employee =>
-      employee.id === updatedEmployee.id ? updatedEmployee : employee
-    ));
-  };
-
-  const  deleteEmployee  =  ((id)=>{
+  const deleteEmployee = (id) => {
     setEmployees(employees.filter(employee => employee.id !== id));
-  })
-
- const [filteredEmployees,setFilteredEmployees] = useState(employees);
-
-
-const handleupdate = (updatedEmployees) =>{
-
-  setFilteredEmployees (updatedEmployees)
-}
-
-const handleUpdate = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch(`/api/employees/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formState),
-    });
-    const data = await response.json();
-    setEmployee(data);
-  } catch (error) {
-    console.error('Error updating employee:', error);
   }
-};
 
+  const handleUpdate = async (e, id) => { // Pass the id for the employee being updated
+    e.preventDefault();
+    try {
+      const response = await fetch(`/api/employees/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+      const data = await response.json();
+      setEmployees(employees.map(employee => (employee.id === id ? data : employee))); // Update the specific employee
+    } catch (error) {
+      console.error('Error updating employee:', error);
+    }
+  };
 
   return (
- 
-   <div className='container'>
-     <h1>Employee Registration form</h1>
-       <div className="container">
-   
-         <div className='form'>
-          
-         </div>
-         <div className='details '>
-           <Form employees={employees}  deleteEmployee={deleteEmployee} handleUpdate={handleUpdate}  />
-         </div>
+    <Router>
+      <div className='container'>
+        <div className='head'>
+          <h1>Employee Registration Form</h1>
+        </div>
+        <nav>
+          <Link to="/Home"></Link>
          
+          <br/>
+         
+          <Link to="/auth"></Link>
+        </nav>
 
-       </div>
-
-       <div>
-        
-       </div>
-   </div>
- 
-    
+        <Routes>
+          <Route path="/Home" element={<Form employees={employees} deleteEmployee={deleteEmployee} handleUpdate={handleUpdate} />} />
+          <Route path="/login" element={<Login />} />
+         
+          <Route path="/" element={<Auth />} />
+         
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

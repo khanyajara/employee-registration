@@ -1,162 +1,182 @@
-.input{
-    width: 300px;
-    display: grid;
-    gap: 2.1rem;
-    height: 35px;
-    border-radius:px ;
-    margin-top: 15px;
+/* General input styling */
+.input {
+  width: 100%; /* Use full width for responsiveness */
+  min-height: 35px;
+  margin-top: 15px;
 }
 
-.active {
-    background-color: #007bff; 
-    color: white;             
-    border-color: #007bff;     
-  }
-  
-  
-  .btn1, .btn2 {
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid #007bff;
-    background-color: white;
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  
- 
-  
-  .edit {
-    background-color: green;
-    color: white;
-    padding: 8px;
-    margin-top: 10px;
-  }
-  
-  .delete {
-    background-color: rgba(247, 159, 159, 0.822);
-    color: white;
-    padding: 8px;
-    margin-top: 10px;
-  }
-  .fakeimg {
-    background-color: #c53838;
-    width: 10%;
-    padding: 20px;
-    justify-items: center;
-    margin-left: 25px;
-  }
-  
-  
-  .card1 {
-     background-color: white;
-     padding: 20px;
-     margin-top: 20px;
-     margin-left: 25px;
-    
-     
-     
-    
-  }
-  .card1 .card__image {
-    flex: 1;
-    height: 140px;
-    
-  }
-  
-  
-  .card1 .card__content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    width: 55%;
-    color: black;
-  }
-  
-  .card1 .card__content .card__title {
-    font-size: 32px;
-    color: black;
-    text-transform: capitalize;
-  }
-  
-  .card1 .card__content .card__describe {
-    color: black;
-    font-size: 16px;
-  }
-  .sizeForCard{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
-    0 0  0 2px rgb(190, 190, 190),
-    0.3em 0.3em 1em rgba(0,0,0,0.3);
-    height: 510px;
-   
-  
-  }
-  
-  .another-btn{
-    color: black;
-    width: 150px;
-  }
-  
- 
-  
-  .dropdown{
-    color: black;
-  }
-  
-  .Info{
-    color: black;
-  }
-  
-  .card1{
-    width: 400px;
-    margin-top:45px ;
-    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    
-  }
-  btn1::after{
-    background-color: blue;
-    color: aliceblue;
-  }
-  .flexing  {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: 100px 300px;
-    grid-gap: 30px;
-    row-gap: 450px;
-    
+/* Button styles */
+.button--active {
+  background-color: #007bff; /* Main theme color */
+  color: white;
+  border-color: #007bff;
+}
 
-    
-   
-    padding: 10px;
-  }
-  
-  .flexing  > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 15px;
-    
-  }
-  .list-container{
-    
+.button--primary,
+.button--secondary {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.button--edit {
+  background-color: #28a745; /* Green theme color for edit */
+  color: white;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.button--delete {
+  background-color: rgba(247, 159, 159, 0.822); /* Light red */
+  color: white;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+/* Card styles */
+.card {
+  background-color: white;
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 25px;
+  width: calc(100% - 50px); /* Responsive width with margin */
+  max-width: 600px; /* Limits max width */
+  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card__image {
+  height: 140px;
+  width: 100%; /* Ensures image fills the container */
+  object-fit: cover; /* Maintains aspect ratio */
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  width: 100%; /* Use full width */
+  color: black;
+}
+
+.card__title {
+  font-size: 32px;
+  text-transform: capitalize;
+}
+
+.card__description {
+  font-size: 16px;
+}
+
+/* Flexbox and grid styles */
+.grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping for responsiveness */
+  gap: 30px;
+  padding: 10px;
+}
+
+.grid-item {
+  flex: 1 1 calc(33% - 30px); /* Allows 3 items per row with gap */
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 15px;
+  min-width: 250px; /* Ensures items don't shrink too much */
+}
+
+/* Additional styles */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; /* Full width for responsiveness */
+  max-width: 500px; /* Limits max width */
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+              0 0 0 2px rgb(190, 190, 190),
+              0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  height: auto; /* Allows height to adjust based on content */
+}
+
+.INPUT {
+  width: 90%;
+  margin-left: 25px;
+}
+
+.button--another {
+  color: black;
+  width: 150px;
+}
+
+.dropdown,
+.info {
+  color: black;
+}
+
+/* Search input styling */
+.search-input {
+  width: 100%; /* Full width for responsiveness */
+  max-width: 400px; /* Limit max width */
+  height: 40px;
+  margin: 10px auto; /* Center align with margin */
+}
+
+/* Column styles */
+.column {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of buttons */
+  gap: 10rem;
+  margin-top: 15px;
+}
+
+/* Miscellaneous styles */
+.fake-img {
+  background-color: #c53838;
+  width: 100%; /* Full width */
+  padding: 20px;
+  justify-items: center;
+  margin-left: 25px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .grid {
+    flex-direction: column; /* Stacks items vertically on small screens */
+    align-items: center; /* Center-align items */
   }
 
-  .columm{
-    display: flex;
-   gap: 2.05rem;
-   margin-top:15px ;
-    
+  .grid-item {
+    flex: 1 1 100%; /* Full width for each item */
+    margin-bottom: 20px; /* Spacing between items */
   }
 
-  .search-input{
-    width: 400px;
-    height: 40px;
-    align-content:center;
-    margin-left:-65px;
+  .column {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 1rem; /* Reduce gap */
   }
-  
+
+  .search-input {
+    width: 90%; /* Wider search input on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-item {
+    font-size: 14px; /* Smaller text on very small screens */
+  }
+
+  .card__title {
+    font-size: 24px; /* Smaller title */
+  }
+
+  .card__description {
+    font-size: 14px; /* Smaller description text */
+  }
+}
