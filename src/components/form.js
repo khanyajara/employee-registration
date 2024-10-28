@@ -144,6 +144,14 @@ function Form() {
     }
   };
 
+  if (showList  === 0) {
+    return (
+      <div>
+        No employees yet
+      </div>
+    );
+  }
+  
   return (
     <div className="App">
       <div className='card'>
@@ -276,6 +284,7 @@ function Form() {
                 </div>
               </div>
             ))}
+            {employees.length === 0 && <p>No employees to display.</p>}
           </div>
         </div>
       )}
