@@ -1,14 +1,25 @@
-/* General input styling */
+
+
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
 .input {
-  width: 100%; /* Use full width for responsiveness */
+  width: 100%; 
   min-height: 35px;
   margin-top: 15px;
 }
 
 
-/* Button styles */
+
 .button--active {
-  background-color: #007bff; /* Main theme color */
+  background-color: #007bff;
   color: white;
   border-color: #007bff;
 }
@@ -148,45 +159,46 @@
 }
 
 .button--edit {
-  background-color: #28a745; /* Green theme color for edit */
+  background-color: #28a745; 
   color: white;
   padding: 8px;
   margin-top: 10px;
 }
 
 .button--delete {
-  background-color: rgba(247, 159, 159, 0.822); /* Light red */
+  background-color: rgba(247, 159, 159, 0.822); 
   color: white;
   padding: 8px;
   margin-top: 10px;
 }
 
-/* Card styles */
+
 .card {
-  background-color: white;
+  background-color:rgba(178, 248, 246, 0.67);
   display: flex;
-  flex-direction: column; /* Stacks items vertically */
+  border-radius: 5px;
+  flex-direction: column;
   justify-content: space-between;
   padding: 20px;
   margin-top: 20px;
   margin-left: 25px;
-  width: calc(100% - 50px); /* Responsive width with margin */
-  max-width: 600px; /* Limits max width */
+  width: calc(100% - 50px); 
+  max-width: 600px; 
   transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card__image {
   height: 140px;
-  width: 100%; /* Ensures image fills the container */
-  object-fit: cover; /* Maintains aspect ratio */
+  width: 100%; 
+  object-fit: cover; 
 }
 
 .card__content {
-  display: flex;
+
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  width: 100%; /* Use full width */
+  gap: 1px;
+  padding: 10px;
+  width: 100%; 
   color: black;
 }
 
@@ -199,34 +211,34 @@
   font-size: 16px;
 }
 
-/* Flexbox and grid styles */
+
 .grid {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping for responsiveness */
+  flex-wrap: wrap; 
   gap: 30px;
   padding: 10px;
 }
 
 .grid-item {
-  flex: 1 1 calc(33% - 30px); /* Allows 3 items per row with gap */
-  background-color: rgba(255, 255, 255, 0.8);
+  flex: 1 1 calc(33% - 30px); 
+ 
   text-align: center;
   padding: 20px 0;
   font-size: 15px;
-  min-width: 250px; /* Ensures items don't shrink too much */
+  min-width: 250px; 
 }
 
-/* Additional styles */
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%; /* Full width for responsiveness */
-  max-width: 500px; /* Limits max width */
+  width: 100%; 
+  max-width: 500px; 
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
               0 0 0 2px rgb(190, 190, 190),
               0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  height: auto; /* Allows height to adjust based on content */
+  height: auto; 
 }
 
 .INPUT {
@@ -244,63 +256,64 @@
   color: black;
 }
 
-/* Search input styling */
 .search-input {
-  width: 100%; /* Full width for responsiveness */
-  max-width: 400px; /* Limit max width */
+  width: 100%; 
+  max-width: 400px;
   height: 40px;
-  margin: 10px auto; /* Center align with margin */
+  margin: 10px auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Column styles */
 .column {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping of buttons */
+  flex-wrap: wrap; 
   gap: 10rem;
   margin-top: 15px;
 }
 
-/* Miscellaneous styles */
+
 .fake-img {
   background-color: #c53838;
-  width: 100%; /* Full width */
+  width: 100%; 
   padding: 20px;
   justify-items: center;
   margin-left: 25px;
 }
 
-/* Media Queries for Responsiveness */
+
 @media (max-width: 768px) {
   .grid {
-    flex-direction: column; /* Stacks items vertically on small screens */
-    align-items: center; /* Center-align items */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .grid-item {
-    flex: 1 1 100%; /* Full width for each item */
-    margin-bottom: 20px; /* Spacing between items */
+    flex: 1 1 100%; 
+    margin-bottom: 20px;
   }
 
   .column {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 1rem; /* Reduce gap */
+    flex-direction: column; 
+    gap: 1rem; 
   }
 
   .search-input {
-    width: 90%; /* Wider search input on smaller screens */
+    width: 90%; 
   }
 }
 
 @media (max-width: 480px) {
   .grid-item {
-    font-size: 14px; /* Smaller text on very small screens */
+    font-size: 14px; 
   }
 
   .card__title {
-    font-size: 24px; /* Smaller title */
+    font-size: 24px; 
   }
 
   .card__description {
-    font-size: 14px; /* Smaller description text */
+    font-size: 14px;
   }
 }

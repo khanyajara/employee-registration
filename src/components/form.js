@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import './form.css';
 
 function Form() {
@@ -144,14 +146,6 @@ function Form() {
     }
   };
 
-  if (showList  === 0) {
-    return (
-      <div>
-        No employees yet
-      </div>
-    );
-  }
-  
   return (
     <div className="App">
       <div className='card'>
@@ -243,11 +237,6 @@ function Form() {
                   <button type="submit" className={`button--${isEditing ? 'edit' : 'primary'}`}>
                     {isEditing ? 'Update Employee' : 'Add Employee'}
                   </button>
-                  {isEditing && (
-                    <button type="button" className="button--delete" onClick={() => deleteEmployee(currentEmployeeId)}>
-                      Delete Employee
-                    </button>
-                  )}
                   <button type="button" className="button--another" onClick={resetForm}>
                     Cancel
                   </button>
@@ -280,6 +269,9 @@ function Form() {
                     <p className='card__description'>Position: {employee.position}</p>
                     <p className='card__description'>Gender: {employee.gender}</p>
                     <button className='button--edit' onClick={() => editEmployee(employee)}>Edit</button>
+                    <button type="button" className="button--delete" onClick={() => deleteEmployee(employee.id)}>
+                      Delete Employee
+                    </button>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import './login.css';
 
-const Auth = ({ employees, deleteEmployee, handleUpdate }) => { // Pass props if needed
+const Auth = ({ employees, deleteEmployee, handleUpdate }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const Auth = ({ employees, deleteEmployee, handleUpdate }) => { // Pass props if
   });
   const [errors, setErrors] = useState('');
   
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,7 +58,7 @@ const Auth = ({ employees, deleteEmployee, handleUpdate }) => { // Pass props if
         const user = JSON.parse(storedUser);
         if (user.password === formData.password) {
           setMessage('Login successful!');
-          navigate('/Home'); // Navigate to Home route on successful login
+          navigate('/Home'); 
         } else {
           setMessage('Invalid password.');
         }
@@ -70,7 +70,7 @@ const Auth = ({ employees, deleteEmployee, handleUpdate }) => { // Pass props if
 
   return (
     <div className="auth-container">
-      <h2>{isLogin ? 'Login' : 'Signup'}</h2>
+      <h2>{isLogin ? 'Login ' : 'Signup'}</h2>
       <form onSubmit={isLogin ? handleLogin : handleSignup}>
         {!isLogin && (
           <input

@@ -8,7 +8,7 @@ const Auth = () => {
   const [message, setMessage] = useState('');
 
   const handleSignup = (data) => {
-    // Store user data in localStorage (you can also implement checks to prevent duplicates)
+    
     localStorage.setItem(data.email, JSON.stringify(data));
     setMessage('Signup successful! You can now log in.');
     setIsLogin(true);
@@ -19,7 +19,7 @@ const Auth = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       if (user.password === data.password) {
-        setMessage('Login successful!'); // Add redirect or other logic here
+        setMessage('Login successful!'); 
       } else {
         setMessage('Invalid password.');
       }
